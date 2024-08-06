@@ -55,7 +55,7 @@ class MongoTest:
     collection_name = "test_collection"
 
     async def clear_database(self):
-        await self.mongo_repository.clear_collections()
+        await self.mongo_repository.clear_collections("test_collection")
     
     async def do_test(self):
         global test_result
@@ -121,7 +121,8 @@ class MongoTest:
     async def test_3(self):
         result = await self.mongo_repository.insert(
             collection=self.collection_name,
-            data=[{"name": "dalmeng1", "type": 3}, {"name": "dalmeng2", "type": 2}, {"name": "dalmeng3", "type": 2}]
+            data=[{"name": "dalmeng1", "type": 3}, {"name": "dalmeng2", "type": 2}, {"name": "dalmeng3", "type": 2}],
+            insert_one=False
         )
         return {
             "expected": [{"name": "dalmeng1", "type": 3}, {"name": "dalmeng2", "type": 2}, {"name": "dalmeng3", "type": 2}],
@@ -133,7 +134,8 @@ class MongoTest:
         try:
             result = await self.mongo_repository.insert(
                 collection=self.collection_name,
-                data={"name": "dalmeng4", "type": 2}
+                data={"name": "dalmeng4", "type": 2},
+                insert_one=False
             )
         except:
             return {

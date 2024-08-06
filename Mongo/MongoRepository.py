@@ -1,6 +1,7 @@
 import asyncio
 import motor.motor_asyncio
 from sqlalchemy.exc import DataError
+from typing import Optional, Union
 
 class MongoRepository:
     def __init__(self, username: str, password: str, table: str, host: str = "127.0.0.1", port: int = 27017, authentication_database: str = "admin"):
@@ -12,11 +13,18 @@ class MongoRepository:
             authSource = authentication_database
         ))
         self.__table = self.__client[table]
-
-    async def clear_collections(self):
-        collections = await self.__table.list_collection_names()
-        for collection in collections:
-            await self.__table[collection].delete_many({})
+    
+    async def clear_collections(self, collection_names: Optional[Union[str | list]] = None):
+        if not collection_names:
+            collection_names = await self.__table.list_collection_names()
+            for collection_name in collection_names:
+                await self.__table[collection_name].delete_many({})
+            return
+        
+        if isinstance(collection_names, str):
+            collection_names = [collection_names]
+        for collection_name in collection_names:
+            await self.__table[collection_name].delete_many({})
     
     async def find(self, collection: str, filter: dict = {}, find_one=False):
         ret = []
@@ -50,20 +58,20 @@ class MongoRepository:
     
     async def update(self, collection: str, filter: dict, data: dict):
         result = await self.__table[collection].find_one(filter)
-        if result:
-            data["dalmeng_pydb_data_id"] = result["dalmeng_pydb_data_id"]
-            await self.__table[collection].replace_one(
-                filter={"dalmeng_pydb_data_id": result["dalmeng_pydb_data_id"]},
-                replacement=data
-            )
-            if "_id" in data:
-                del data["_id"]
-            if "dalmeng_pydb_data_id" in data:
-                del data["dalmeng_pydb_data_id"]
-            return data
-        raise DataError
+        if not result: raise DataError
+        data["dalmeng_pydb_data_id"] = result["dalmeng_pydb_data_id"]
+        await self.__table[collection].replace_one(
+            filter={"dalmeng_pydb_data_id": result["dalmeng_pydb_data_id"]},
+            replacement=data
+        )
+        if "_id" in data:
+            del data["_id"]
+        if "dalmeng_pydb_data_id" in data:
+            del data["dalmeng_pydb_data_id"]
+        return data
+        
 
-    async def insert(self, collection: str, data: dict | list[dict], insert_one=False):
+    async def insert(self, collection: str, data: dict | list[dict], insert_one=True):
         if insert_one:
             if not isinstance(data, dict):
                 raise ValueError("To insert single data, data type must be dictionary.")
