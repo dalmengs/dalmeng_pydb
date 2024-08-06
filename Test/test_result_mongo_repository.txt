@@ -1,0 +1,136 @@
+==================================================
+[Test Information]
+Test Start: Test #1. Insert Single Data with Dictionary
+Function Name: test_1
+
+[Test Results]
+Expected Result: {'name': 'dalmeng', 'type': 1}
+Actual Result  : {'name': 'dalmeng', 'type': 1}
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #2. Insert Single Data with List
+Function Name: test_2
+
+[Test Results]
+Expected Result: <class 'Exception'>
+Actual Result  : <class 'Exception'>
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #3. Insert Multiple Data with List
+Function Name: test_3
+
+[Test Results]
+Expected Result: [{'name': 'dalmeng1', 'type': 3}, {'name': 'dalmeng2', 'type': 2}, {'name': 'dalmeng3', 'type': 2}]
+Actual Result  : [{'name': 'dalmeng1', 'type': 3}, {'name': 'dalmeng2', 'type': 2}, {'name': 'dalmeng3', 'type': 2}]
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #4. Insert Multiple Data with Dictionary
+Function Name: test_4
+
+[Test Results]
+Expected Result: <class 'Exception'>
+Actual Result  : <class 'Exception'>
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #5. Delete Data
+Function Name: test_5
+
+[Test Results]
+Expected Result: [{'name': 'dalmeng3', 'type': 2}]
+Actual Result  : [{'name': 'dalmeng3', 'type': 2}]
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #6. Find Single Data
+Function Name: test_6
+
+[Test Results]
+Expected Result: {'name': 'dalmeng1', 'type': 3}
+Actual Result  : {'name': 'dalmeng1', 'type': 3}
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #7. Find All
+Function Name: test_7
+
+[Test Results]
+Expected Result: [{'name': 'dalmeng', 'type': 1}, {'name': 'dalmeng1', 'type': 3}, {'name': 'dalmeng2', 'type': 2}]
+Actual Result  : [{'name': 'dalmeng', 'type': 1}, {'name': 'dalmeng1', 'type': 3}, {'name': 'dalmeng2', 'type': 2}]
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #8. Find Using Filter
+Function Name: test_8
+
+[Test Results]
+Expected Result: [{'name': 'dalmeng', 'type': 1}]
+Actual Result  : [{'name': 'dalmeng', 'type': 1}]
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #9. Update Non-Exist Data
+Function Name: test_9
+
+[Test Results]
+Expected Result: <class 'Exception'>
+Actual Result  : <class 'Exception'>
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #10. Update Data
+Function Name: test_10
+
+[Test Results]
+Expected Result: {'name': 'dalmeng1', 'type': 1}
+Actual Result  : {'name': 'dalmeng1', 'type': 1}
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #11. Upsert Non-Exist Data
+Function Name: test_11
+
+[Test Results]
+Expected Result: {'name': 'dalmeng3', 'type': 3}
+Actual Result  : {'name': 'dalmeng3', 'type': 3}
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Information]
+Test Start: Test #12. Upsert Exist Data
+Function Name: test_12
+
+[Test Results]
+Expected Result: {'name': 'dalmeng1', 'type': 2}
+Actual Result  : {'name': 'dalmeng1', 'type': 2}
+Final Result   : Succeed
+==================================================
+==================================================
+[Test Summary]
+[Test 1] Test #1. Insert Single Data with Dictionary -> Succeed
+[Test 2] Test #2. Insert Single Data with List -> Succeed
+[Test 3] Test #3. Insert Multiple Data with List -> Succeed
+[Test 4] Test #4. Insert Multiple Data with Dictionary -> Succeed
+[Test 5] Test #5. Delete Data -> Succeed
+[Test 6] Test #6. Find Single Data -> Succeed
+[Test 7] Test #7. Find All -> Succeed
+[Test 8] Test #8. Find Using Filter -> Succeed
+[Test 9] Test #9. Update Non-Exist Data -> Succeed
+[Test 10] Test #10. Update Data -> Succeed
+[Test 11] Test #11. Upsert Non-Exist Data -> Succeed
+[Test 12] Test #12. Upsert Exist Data -> Succeed
+==================================================
+12 Tests Succeed over Total 12 Tests.
