@@ -20,7 +20,14 @@ class Embedder:
             }
         )
         
-        return embedding_result.json()["data"]
+        if isinstance(message, str):
+            return embedding_result.json()["data"]["embedding_result"]
+        
+        ret = []
+        for i in embedding_result.json()["data"]:
+            ret.append(i["embedding_result"])
+        
+        return ret
 
 class Request:
     session = None
